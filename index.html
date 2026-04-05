@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Geburtstagsbuch</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    overflow: hidden;
+    background: #2b0a3d;
+}
+
+/* Seiten */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: transform 1s;
+    color: white;
+}
+
+/* Lila Hintergründe */
+#page1 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); z-index: 4; }
+#page2 { background: linear-gradient(135deg, #c471f5, #fa71cd); transform: translateX(100%); z-index: 3; }
+#page3 { background: linear-gradient(135deg, #7f00ff, #e100ff); transform: translateX(200%); z-index: 2; }
+#page4 { background: linear-gradient(135deg, #4b0082, #8a2be2); transform: translateX(300%); z-index: 1; }
+
+/* Karte */
+.card {
+    background: rgba(255,255,255,0.9);
+    color: #4b0082;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width: 500px;
+}
+
+/* Blumen */
+.flower {
+    position: absolute;
+    font-size: 30px;
+    animation: float 6s infinite ease-in-out;
+}
+.flower:nth-child(1) { top: 10%; left: 10%; }
+.flower:nth-child(2) { top: 20%; right: 15%; }
+.flower:nth-child(3) { bottom: 15%; left: 20%; }
+.flower:nth-child(4) { bottom: 10%; right: 10%; }
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    background: #8a2be2;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover { background: #6a0dad; }
+
+/* Glitzer */
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 3s infinite;
+}
+@keyframes sparkle {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.5); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* Bilder */
+img {
+    border-radius: 20px;
+    margin: 15px 0;
+    max-width: 100%;
+}
+
+/* Konfetti */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    opacity: 0.8;
+    animation: fall 3s linear forwards;
+}
+@keyframes fall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+</style>
+
+</head>
+<body>
+
+<!-- Blumen -->
+<div class="flower">🌸</div>
+<div class="flower">🌺</div>
+<div class="flower">🌷</div>
+<div class="flower">🌹</div>
+
+<!-- Glitzer -->
+<div class="sparkle" style="top:20%; left:30%;"></div>
+<div class="sparkle" style="top:60%; left:70%;"></div>
+<div class="sparkle" style="top:40%; left:50%;"></div>
+
+<!-- Seite 1 -->
+<div id="page1" class="page">
+    <div class="card">
+        <h1>🎉 Alles Gute zum 43. Geburtstag mama! 🎂</h1>
+        <p>ich hoffe du hast ein guten tag 💜</p>
+        <p>Klick auf das Geschenk 👇</p>
+        <button onclick="goToPage(2)">🎁 Öffnen</button>
+    </div>
+</div>
+
+<!-- Seite 2 -->
+<div id="page2" class="page">
+    <div class="card">
+        <h1>💜 Für dich</h1>
+        <img src="https://assets.pixolum.com/blog/wp-content/uploads/2019/09/Blumen-Fotografieren-50mm.jpg" width="300">
+        <p>Du bist ein toller Mensch 🌸</p>
+        <p>ich habe nicht viel budget 💕</p>
+        <button onclick="goToPage(3)">Weiter ➡</button>
+    </div>
+</div>
+
+<!-- Seite 3 -->
+<div id="page3" class="page">
+    <div class="card">
+        <h1>🎁 Überraschung</h1>
+        <img src="https://www.topgear.com/sites/default/files/2025/12/PEUGEOT_308%26308SWTESTDRIVE_0030TC.jpg" width="400">
+        <p>Ich wünsche dir alles Glück der Welt 💜</p>
+        <p>Bleib so einzigartig wie du bist 🌷</p>
+        <p>🥳 Feier schön! 🥳</p>
+        <button onclick="goToPage(4)">➡ Weiter</button>
+    </div>
+</div>
+
+<!-- Seite 4 -->
+<div id="page4" class="page">
+    <div class="card">
+        <h1>✨ Nwie gesagt wenig budget /h1>
+        <img src="https://www.transcript-verlag.de/shopMedia/autoren/58486.jpg" width="280">
+        <p>ich krieg das h1 nicht weg ohne den ganzen code zu zerstören und das n vor dem wie geht auch nicht weg hab dich lieb 😊</p>
+        <button onclick="goToPage(1)">🏠 Zur Startseite</button>
+    </div>
+</div>
+
+<script>
+function goToPage(page) {
+    document.getElementById("page1").style.transform = "translateX(" + (-100 * (page-1)) + "%)";
+    document.getElementById("page2").style.transform = "translateX(" + (100 - 100 * (page-1)) + "%)";
+    document.getElementById("page3").style.transform = "translateX(" + (200 - 100 * (page-1)) + "%)";
+    document.getElementById("page4").style.transform = "translateX(" + (300 - 100 * (page-1)) + "%)";
+
+    // 🎉 Konfetti auf Seite 3
+    if (page === 3) {
+        for (let i = 0; i < 100; i++) {
+            let confetti = document.createElement("div");
+            confetti.className = "confetti";
+            let colors = ["#ff0", "#ff69b4", "#00ffff", "#ff4500", "#7fff00"];
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.width = (Math.random() * 8 + 4) + "px";
+            confetti.style.height = confetti.style.width;
+            document.body.appendChild(confetti);
+            setTimeout(() => { confetti.remove(); }, 3000);
+        }
+    }
+}
+</script>
+
+</body>
+</html>
